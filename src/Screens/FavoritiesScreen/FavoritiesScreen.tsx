@@ -26,7 +26,7 @@ export default function Favorities() {
 
 
     useEffect(() => {
-        console.log('Favori Ürünler:', favoriteList);
+
     }, [favoriteList]);
 
     const handleRemoveFavorite = (item) => {
@@ -56,20 +56,14 @@ export default function Favorities() {
     const renderItem = ({ item }: { item: any }) => (
         <View style={{
             borderColor: theme.colors.textGray,
-
-        
-
-
-
+            
         }}>
             <TouchableOpacity
                 onPress={() => {
                     navigation.navigate('ProductDetail', {
                         item: item
                     });
-
                 }
-
                 }
                 activeOpacity={1}
                 style={{
@@ -77,53 +71,18 @@ export default function Favorities() {
                 }}>
 
 
-                <View style={{
-                    flexDirection: "row",
-                    flex: 1
-                }}>
+                <View style={styles.listContainer}>
 
 
                     <Image source={{ uri: item.imageUrl }}
-                        style={{
-                            width: screenWidth * 0.2,
-                            resizeMode: "contain",
-                            margin: 5,
-
-
-                        }}
-                    />
-
-
-                    <View style={{
-                        flexDirection: "column",
-                        justifyContent: "center",
-                        flex: 1
-
-
-                    }}>
-                        <Text style={{
-                            flex: 1,
-                            margin: 5,
-                            marginTop: 10,
-                            fontSize: 15,
-                        }}>
+                        style={styles.image} />
+                    <View style={styles.listDetailContainerMain}>
+                        <Text style={styles.textName}>
                             {item.name}
                         </Text>
-                        <View style={{
-                            flexDirection: "row",
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                            flex: 1,
-
-
-                        }}>
-
-
+                        <View style={styles.detailContainer}>
                             <Text style={{
-                                margin: 5,
-                                color: theme.colors.buttonGreen,
-                                fontWeight: "bold",
-                                fontSize: 16
+                                color: theme.colors.buttonGreen, ...styles.priceText
                             }}>
                                 {new Intl.NumberFormat('tr-TR', {
                                     style: 'decimal',
@@ -134,11 +93,8 @@ export default function Favorities() {
                         </View>
 
                     </View>
-                    {/* //removeFavorite */}
-                    <View style={{
-                        margin: 10,
-                        padding: 10
-                    }}>
+
+                    <View style={styles.removeFavorite}>
 
                         <AntDesign
                             style={{
@@ -181,7 +137,7 @@ export default function Favorities() {
                     <RefreshControl
                         refreshing={false}
                         onRefresh={() => {
-                            // Alert.alert("Yenilendi")
+
                         }}
                     />
                 }
@@ -198,9 +154,9 @@ export default function Favorities() {
                             />
                         </View>
                         <Text style={{
-                                    ...styles.listEmptyText,
-                                    color: theme.colors.textGray
-                                }}>
+                            ...styles.listEmptyText,
+                            color: theme.colors.textGray
+                        }}>
                             Favori Ürün Bulunamadı
                         </Text>
                         <Button

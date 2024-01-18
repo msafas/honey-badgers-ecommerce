@@ -20,9 +20,9 @@ export const DeviceIdProvider = ({ children }) => {
             setValue(id = generateUUID());
             config.setConfigParameter("deviceId", id);
         }
-        console.log("Device Id: " + id);
+
     }, [config?.config?.deviceId]);
-    // console.log("ID: " + config.config?.deviceId);
+
     if (!value) return undefined;
 
     return (

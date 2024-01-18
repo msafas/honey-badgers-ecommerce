@@ -42,7 +42,7 @@ export function ToastProvider(props: any) {
     }, [removes]);
 
     const remove = (id: any) => {
-        // console.log('removed', id);
+
         setRemoves([...removes, id]);
     };
 

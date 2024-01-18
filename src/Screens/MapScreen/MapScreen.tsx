@@ -24,7 +24,7 @@ export default function MapScreen() {
 
 
     useEffect(() => {
-        // Konum izni iste
+
         (async () => {
             const { status } = await Location.requestForegroundPermissionsAsync();
             if (status !== 'granted') {
@@ -39,12 +39,12 @@ export default function MapScreen() {
     }, []);
 
     const handleMapPress = async (e) => {
-        // Tıklanan konumu al
+
         const selectedLocation = e.nativeEvent.coordinate;
         setLocation(selectedLocation);
         dispatch(setLoca(selectedLocation))
 
-        // Koordinatları kullanarak adresi al
+
         const addressResponse = await Location.reverseGeocodeAsync({
             latitude: selectedLocation.latitude,
             longitude: selectedLocation.longitude,
@@ -55,14 +55,13 @@ export default function MapScreen() {
                 ? `${addressResponse[0].name}, ${addressResponse[0].street}, ${addressResponse[0].city}`
                 : 'Adres bulunamadı';
 
-        // setAddress(formattedAddress);
         dispatch(setAddress(formattedAddress))
 
     };
 
     const handleSaveAddress = async () => {
         try {
-            console.log("safa", "222")
+
             await AsyncStorage.setItem('address', address);
             await AsyncStorage.setItem('location', JSON.stringify(location));
             navigation.goBack();

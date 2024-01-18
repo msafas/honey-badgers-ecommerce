@@ -110,7 +110,8 @@ export const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '400',
         marginTop: 10 ,
-    }
+    },
+ 
 
 
 

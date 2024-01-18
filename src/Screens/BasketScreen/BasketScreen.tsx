@@ -8,6 +8,7 @@ import { screenHeight, screenWidth } from '../../utils/sizeHelper';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, clearCart, removeFromCart } from '../../Redux/Slice/cartSlice';
 import { styles } from './Style';
+import { as } from 'make-plural';
 
 
 
@@ -17,7 +18,7 @@ import { styles } from './Style';
 
 export default function Basket() {
     const theme = useTheme() as any
-    const navigation = useNavigation()
+    const navigation = useNavigation() as any
     const dispatch = useDispatch();
     const cartItems = useSelector(state => state.cart.cartItems);
     const totalCartPrice = useSelector(state => state.cart.totalAllItemsPrice);
@@ -28,7 +29,7 @@ export default function Basket() {
     };
 
     const handleRemoveFromCart = (item) => {
-        console.log(item, "item")
+
         dispatch(removeFromCart(item));
 
     };
@@ -62,50 +63,65 @@ export default function Basket() {
             ...styles.listContainer
 
         }}>
-            <View style={styles.listContainer2}>
-                <Image source={{ uri: item.imageUrl }}
-                    style={styles.image}
-                />
-                <View style={styles.listDetailContainerMain}>
-                    <Text style={{
-                        flex: 1,
-                        margin: 5,
-                        marginTop: 10,
-                        fontSize: 12,
-                    }}>
-                        {item.name}
-                    </Text>
-                    <View style={styles.quantityContainer}>
+            <TouchableOpacity
+                onPress={() => {
+                    navigation.navigate('ProductDetail', {
+                        item: item
+                    })
 
-                    <View style={{...styles.controlButtonContainer,    borderColor: theme.colors.textGray,}}>
-                            <TouchableOpacity onPress={() => {
-                                handleRemoveFromCart(item)
-                            }}>
-                                <AntDesign name="minuscircleo" size={20} color={theme.colors.primary} />
-                            </TouchableOpacity>
-                            <View style={styles.quantityTextContainer}>
+                }
 
-                            <Text style={{...styles.quantityText,  color: theme.colors.buttonGreen,}}>{item.quantity}</Text>
-                            </View>
+                }
+                activeOpacity={1}
+                style={{
+                    flex: 1
+                }}>
 
-                            <TouchableOpacity onPress={() => {
-                                handleAddToCart(item)
-                            }}>
-                                <AntDesign name="pluscircleo" size={20} color={theme.colors.buttonGreen} />
-                            </TouchableOpacity>
-
-                        </View>
-                        <Text style={{...styles.priceText,color: theme.colors.buttonGreen,}}>
-                            {new Intl.NumberFormat('tr-TR', {
-                                style: 'decimal',
-                                minimumFractionDigits: 2,
-                                maximumFractionDigits: 2,
-                            }).format(item?.price)} ₺
+                <View style={styles.listContainer2}>
+                    <Image source={{ uri: item.imageUrl }}
+                        style={styles.image}
+                    />
+                    <View style={styles.listDetailContainerMain}>
+                        <Text style={{
+                            flex: 1,
+                            margin: 5,
+                            marginTop: 10,
+                            fontSize: 12,
+                        }}>
+                            {item.name}
                         </Text>
-                    </View>
+                        <View style={styles.quantityContainer}>
 
+                            <View style={{ ...styles.controlButtonContainer, borderColor: theme.colors.textGray, }}>
+                                <TouchableOpacity onPress={() => {
+                                    handleRemoveFromCart(item)
+                                }}>
+                                    <AntDesign name="minuscircleo" size={20} color={theme.colors.primary} />
+                                </TouchableOpacity>
+                                <View style={styles.quantityTextContainer}>
+
+                                    <Text style={{ ...styles.quantityText, color: theme.colors.buttonGreen, }}>{item.quantity}</Text>
+                                </View>
+
+                                <TouchableOpacity onPress={() => {
+                                    handleAddToCart(item)
+                                }}>
+                                    <AntDesign name="pluscircleo" size={20} color={theme.colors.buttonGreen} />
+                                </TouchableOpacity>
+
+                            </View>
+                            <Text style={{ ...styles.priceText, color: theme.colors.buttonGreen, }}>
+                                {new Intl.NumberFormat('tr-TR', {
+                                    style: 'decimal',
+                                    minimumFractionDigits: 2,
+                                    maximumFractionDigits: 2,
+                                }).format(item?.price)} ₺
+                            </Text>
+                        </View>
+
+                    </View>
                 </View>
-            </View>
+            </TouchableOpacity>
         </View>
     );
 

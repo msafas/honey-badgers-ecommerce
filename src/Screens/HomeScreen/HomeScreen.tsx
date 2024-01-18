@@ -19,7 +19,7 @@ import BottomSheet from "@gorhom/bottom-sheet";
 import { styles } from './Style';
 import { setAddress, setLoca } from '../../Redux/Slice/locationSlice';
 
-// login screen
+
 
 export default function HomeScreen() {
     const theme = useTheme() as any
@@ -34,7 +34,6 @@ export default function HomeScreen() {
     const handOpenPress = () => bottomSheetRef.current.collapse();
     const snapPoints = useMemo(() => [250], []);
 
-    // to do adres gelmiyor reduxu düzelt
 
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {

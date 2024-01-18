@@ -81,10 +81,43 @@ export const styles = StyleSheet.create({
         borderTopRightRadius: 10,
         borderBottomRightRadius: 10,
     },
+    listContainer: {
+        flexDirection: "row",
+        flex: 1
+    },
+    image: {
+        width: Dimensions.get('window').width * 0.2,
+        resizeMode: "contain",
+        margin: 5,
 
+    },
+    listDetailContainerMain: {
+        flexDirection: "column",
+        justifyContent: "center",
+        flex: 1
+    },
+    textName: {
 
-
-
+        flex: 1,
+        margin: 5,
+        marginTop: 10,
+        fontSize: 15,
+    },
+    detailContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        flex: 1,
+    },
+    priceText: {
+        margin: 5,
+        fontWeight: "bold",
+        fontSize: 16
+    },
+    removeFavorite: {
+        margin: 10,
+        padding: 10
+    }
 
 
 

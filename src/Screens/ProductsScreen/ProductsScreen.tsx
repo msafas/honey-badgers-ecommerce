@@ -57,7 +57,9 @@ export default function ProductsScreen() {
             <SafeAreaView>
             </SafeAreaView>
             <Spinner visible={loading} />
-            <View>
+            <View style={{
+                marginBottom:screenHeight*0.11
+            }}>
                 <StatusBar backgroundColor={theme.colors.appcolor} style="dark" />
                 <View >
                     <Text style={{
@@ -69,13 +71,15 @@ export default function ProductsScreen() {
                         Ürünler
                     </Text>
                 </View>
-
+           
                 <FlatList
                     showsHorizontalScrollIndicator={false}
                     showsVerticalScrollIndicator={false}
                     key={2}
                     style={{
                         margin: 10,
+
+
                     }}
                     data={products}
                     numColumns={2}
@@ -154,8 +158,10 @@ export default function ProductsScreen() {
                     )}
 
                 />
+           
 
             </View>
+         
             <BottomSheet
                 enablePanDownToClose
                 ref={bottomSheetRef}
@@ -170,6 +176,7 @@ export default function ProductsScreen() {
                     </Text>
                 </View>
             </BottomSheet>
+            
         </View>
 
     )
