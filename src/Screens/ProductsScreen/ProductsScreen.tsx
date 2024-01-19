@@ -92,7 +92,9 @@ export default function ProductsScreen() {
                                 })
 
                             }}
-                            style={styles.listTouchable}>
+                            style={{...styles.listTouchable,
+                                maxWidth: screenWidth * 0.45,
+                            }}>
                             <Card
                                 style={styles.listCard}>
                                 <Image
