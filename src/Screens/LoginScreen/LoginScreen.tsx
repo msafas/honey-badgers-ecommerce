@@ -65,7 +65,7 @@ export default function LoginScreen() {
                         </View>
                         <Button
                             onPress={() =>
-                                navigation.navigate("HomeBottomBar")
+                                navigation.replace("HomeBottomBar")
 
                             }
                             contentStyle={{
